@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.jiripinkas.example.chat.entity.Role;
 import cz.jiripinkas.example.chat.entity.User;
+import cz.jiripinkas.example.chat.entity.UserRole;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/application-config.xml")
@@ -27,22 +28,33 @@ public class RoleServiceIT {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	private RoleService roleService;
 
 	@Before
 	public void setUp() throws Exception {
-		{
-			Role role = new Role();
-			role.setName("ROLE_USER");
-			entityManager.persist(role);
-		}
-		{
-			Role role = new Role();
-			role.setName("ROLE_ADMIN");
-			entityManager.persist(role);
-		}
+		User userAdmin = new User();
+		userAdmin.setName("admin");
+		entityManager.persist(userAdmin);
+
+		User userGuest = new User();
+		userGuest.setName("guest");
+		entityManager.persist(userGuest);
+
+		Role roleUser = new Role();
+		roleUser.setName("ROLE_USER");
+		entityManager.persist(roleUser);
+
+		Role roleAdmin = new Role();
+		roleAdmin.setName("ROLE_ADMIN");
+		entityManager.persist(roleAdmin);
+
+		UserRole userRoleAdmin = new UserRole();
+		userRoleAdmin.setRole(roleAdmin);
+		userRoleAdmin.setUser(userAdmin);
+		entityManager.persist(userRoleAdmin);
+
 		entityManager.flush();
 		entityManager.clear();
 	}
@@ -50,27 +62,29 @@ public class RoleServiceIT {
 	@Test
 	public void testFindAll() {
 		Assert.assertEquals(2, roleService.findAll().size());
-		
-		List<Role> findAll = roleService.findAll();
-		for (Role role : findAll) {
-			System.out.println(role.getId());
-		}
 	}
 
-	@Ignore
 	@Test
 	public void testFindOne() {
-		Assert.assertEquals("ROLE_USER", roleService.findOne(1).getName());
+		Assert.assertEquals("ROLE_USER", roleService.findOne(3).getName());
 	}
 
 	@Test
 	public void testFindByName() {
-		Assert.assertEquals("ROLE_USER", roleService.findByName("ROLE_USER").getName());
+		Assert.assertEquals("ROLE_USER", roleService.findByName("ROLE_USER")
+				.getName());
 	}
 
 	@Test
 	public void testCount() {
 		Assert.assertEquals(2, roleService.count());
+	}
+
+	@Test
+	public void testFindByUserName() {
+		List<Role> list = roleService.findByUserName("admin");
+		Assert.assertEquals(1, list.size());
+		Assert.assertEquals("ROLE_ADMIN", list.get(0).getName());
 	}
 
 }

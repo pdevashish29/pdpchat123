@@ -26,8 +26,9 @@ public class RoleService {
 		return roleRepository.findByName(name);
 	}
 	
-//	public List<Role> findByRoleName() {
-//	}
+	public List<Role> findByUserName(String name) {
+		return roleRepository.findByUserName(name);
+	}
 	
 	public long count() {
 		return roleRepository.count();

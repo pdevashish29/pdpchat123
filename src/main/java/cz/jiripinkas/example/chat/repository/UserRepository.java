@@ -28,11 +28,15 @@ public class UserRepository {
 		return entityManager.createNamedQuery(User.FIND_BY_NAME, User.class)
 				.setParameter("name", name).getSingleResult();
 	}
-	
-//	public List<User> findByRoleName() {
-//	}
-	
+
+	public List<User> findByRoleName(String name) {
+		return entityManager
+				.createNamedQuery(User.FIND_BY_ROLE_NAME, User.class)
+				.setParameter("name", name).getResultList();
+	}
+
 	public long count() {
-		return entityManager.createNamedQuery(User.COUNT, Long.class).getSingleResult();
+		return entityManager.createNamedQuery(User.COUNT, Long.class)
+				.getSingleResult();
 	}
 }

@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 @NamedQueries({
 		@NamedQuery(name = User.FIND_ALL, query = "select u from User u"),
 		@NamedQuery(name = User.FIND_BY_NAME, query = "select u from User u where u.name = :name"),
-		@NamedQuery(name = User.COUNT, query = "select count(u) from User u") })
+		@NamedQuery(name = User.COUNT, query = "select count(u) from User u"),
+		@NamedQuery(name = User.FIND_BY_ROLE_NAME, query = "select ur.user from UserRole ur where ur.role.name = :name") })
 public class User {
 
 	public static final String FIND_ALL = "User.findAll";
@@ -21,6 +22,8 @@ public class User {
 	public static final String FIND_BY_NAME = "User.findByName";
 
 	public static final String COUNT = "User.count";
+
+	public static final String FIND_BY_ROLE_NAME = "User.findByRoleName";
 
 	@Id
 	@GeneratedValue

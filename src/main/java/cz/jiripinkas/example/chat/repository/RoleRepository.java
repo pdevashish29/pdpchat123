@@ -22,6 +22,7 @@ public class RoleRepository {
 
 	public Role findOne(int id) {
 		return entityManager.find(Role.class, id);
+//		return entityManager.createQuery("select r from Role r where r.id = :id", Role.class).setParameter("id", id).getSingleResult();
 	}
 
 	public Role findByName(String name) {
@@ -29,8 +30,9 @@ public class RoleRepository {
 				.setParameter("name", name).getSingleResult();
 	}
 	
-//	public List<Role> findByRoleName() {
-//	}
+	public List<Role> findByUserName(String name) {
+		return entityManager.createNamedQuery(Role.FIND_BY_USER_NAME, Role.class).setParameter("name", name).getResultList();
+	}
 	
 	public long count() {
 		return entityManager.createNamedQuery(Role.COUNT, Long.class).getSingleResult();
