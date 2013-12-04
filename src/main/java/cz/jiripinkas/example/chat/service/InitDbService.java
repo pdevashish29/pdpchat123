@@ -14,7 +14,7 @@ public class InitDbService {
 
 	@Autowired
 	private ChatroomService chatroomService;
-
+	
 	@TransactionalRW
 	@PostConstruct
 	// initialize database each day

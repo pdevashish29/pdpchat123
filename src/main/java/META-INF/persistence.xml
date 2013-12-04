@@ -3,5 +3,8 @@
 	<persistence-unit name="online-chat">
 		<class>cz.jiripinkas.example.chat.entity.Chatmessage</class>
 		<class>cz.jiripinkas.example.chat.entity.Chatroom</class>
+		<class>cz.jiripinkas.example.chat.entity.User</class>
+		<class>cz.jiripinkas.example.chat.entity.Role</class>
+		<class>cz.jiripinkas.example.chat.entity.UserRole</class>
 	</persistence-unit>
 </persistence>
