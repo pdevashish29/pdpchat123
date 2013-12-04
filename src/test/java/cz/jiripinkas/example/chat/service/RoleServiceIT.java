@@ -55,6 +55,11 @@ public class RoleServiceIT {
 		userRoleAdmin.setUser(userAdmin);
 		entityManager.persist(userRoleAdmin);
 
+		UserRole userRoleUser = new UserRole();
+		userRoleUser.setRole(roleUser);
+		userRoleUser.setUser(userGuest);
+		entityManager.persist(userRoleUser);
+
 		entityManager.flush();
 		entityManager.clear();
 	}
