@@ -1,8 +1,6 @@
 package cz.jiripinkas.example.chat.service;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import cz.jiripinkas.example.chat.annotation.TransactionalRW;
 import cz.jiripinkas.example.chat.entity.Chatroom;
-import cz.jiripinkas.example.chat.entity.Role;
-import cz.jiripinkas.example.chat.entity.User;
-import cz.jiripinkas.example.chat.entity.UserRole;
 
 @Service
 public class InitDbService {
@@ -20,8 +15,8 @@ public class InitDbService {
 	@Autowired
 	private ChatroomService chatroomService;
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	@Autowired
+	private InitDbUserService initDbUserService;
 
 	@TransactionalRW
 	@PostConstruct
@@ -30,34 +25,9 @@ public class InitDbService {
 	public void init() {
 		System.out.println("*** START INIT DATABASE ***");
 		chatroomService.deleteAll();
-		{
-			User userAdmin = new User();
-			userAdmin.setName("admin");
-			entityManager.persist(userAdmin);
-
-			User userGuest = new User();
-			userGuest.setName("guest");
-			entityManager.persist(userGuest);
-
-			Role roleUser = new Role();
-			roleUser.setName("ROLE_USER");
-			entityManager.persist(roleUser);
-
-			Role roleAdmin = new Role();
-			roleAdmin.setName("ROLE_ADMIN");
-			entityManager.persist(roleAdmin);
-
-			UserRole userRoleAdmin = new UserRole();
-			userRoleAdmin.setRole(roleAdmin);
-			userRoleAdmin.setUser(userAdmin);
-			entityManager.persist(userRoleAdmin);
-
-			UserRole userRoleUser = new UserRole();
-			userRoleUser.setRole(roleUser);
-			userRoleUser.setUser(userGuest);
-			entityManager.persist(userRoleUser);
-
-		}
+		
+		initDbUserService.init();
+		
 		{
 			Chatroom chatroom = new Chatroom();
 			chatroom.setName("Soccer");

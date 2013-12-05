@@ -32,6 +32,7 @@
 					<li class="${param.page == 'chatroom' ? 'active' : ''}"><a href="<c:url value="/chatroom.html" />">New Chatroom</a></li>
 					<li class="${param.page == 'list' ? 'active' : ''}"><a href="<c:url value="/chatroom/list.html" />">Chatroom List</a></li>
 					<li class="${param.page == 'about' ? 'active' : ''}"><a href="<c:url value="/about.html" />">About</a></li>
+					<li class="${param.page == 'users' ? 'active' : ''}"><a href="<c:url value="/users.html" />">Users</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
