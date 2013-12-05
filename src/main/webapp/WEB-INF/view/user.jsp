@@ -11,7 +11,9 @@
 
 <form:form commandName="user">
 	<div class="form-group" style="width: 200px">
+		<form:errors path="name" /><br />
 		<form:input path="name" cssClass="form-control" placeholder="Name" /><br />
+		<form:errors path="password" /><br />
 		<form:password path="password" cssClass="form-control" placeholder="Password" /><br />
 		<input type="submit" class="btn btn-primary" />
 	</div>

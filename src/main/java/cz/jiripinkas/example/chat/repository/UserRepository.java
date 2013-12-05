@@ -47,4 +47,8 @@ public class UserRepository {
 	public void add(User user) {
 		entityManager.persist(user);
 	}
+
+	public void update(User user) {
+		entityManager.merge(user);
+	}
 }

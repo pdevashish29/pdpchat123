@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
@@ -31,13 +32,15 @@ public class User {
 	@GeneratedValue
 	private int id;
 
+	@Size(min = 1, message = "Name must not be empty!")
 	private String name;
 
+	@Size(min = 1, message = "Password must not be empty!")
 	private String password;
 
 	private boolean enabled;
 
-	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<UserRole> userRoles;
 
 	public List<UserRole> getUserRoles() {

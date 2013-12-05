@@ -43,4 +43,9 @@ public class UserService {
 	public void add(User user) {
 		userRepository.add(user);
 	}
+
+	public void edit(User user) {
+		userRepository.update(user);
+	}
+
 }

@@ -15,6 +15,7 @@
 			<th>enabled</th>
 			<th>roles</th>
 			<th>remove</th>
+			<th>edit</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,6 +32,10 @@
 				<td>
 					<a href="users/delete.html?id=${user.id}" 
 					   class="btn btn-primary btn-danger btn-remove">remove</a>
+				</td>
+				<td>
+					<a href="users/edit.html?id=${user.id}" 
+					   class="btn btn-primary">edit</a>
 				</td>
 			</tr>
 		</c:forEach>
