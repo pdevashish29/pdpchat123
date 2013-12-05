@@ -23,11 +23,6 @@ public class UserServiceIT {
 	@Test
 	public void testFindAll() {
 		Assert.assertEquals(2, userService.findAll().size());
-
-		List<User> findAll = userService.findAll();
-		for (User user : findAll) {
-			System.out.println(user.getId());
-		}
 	}
 
 	@Test
