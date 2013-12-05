@@ -2,8 +2,8 @@ package cz.jiripinkas.example.chat.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -12,9 +12,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-		// @NamedQuery(name = User.FIND_ALL, query =
-		// "select u from User u join fetch u.userRoles ur join fetch ur.role"),
-		@NamedQuery(name = User.FIND_ALL, query = "select u from User u"),
+		@NamedQuery(name = User.FIND_ALL, query = "select u from User u left join fetch u.userRoles ur left join fetch ur.role"),
+		// @NamedQuery(name = User.FIND_ALL, query = "select u from User u"),
 		@NamedQuery(name = User.FIND_BY_NAME, query = "select u from User u where u.name = :name"),
 		@NamedQuery(name = User.COUNT, query = "select count(u) from User u"),
 		@NamedQuery(name = User.FIND_BY_ROLE_NAME, query = "select ur.user from UserRole ur where ur.role.name = :name") })
@@ -38,7 +37,7 @@ public class User {
 
 	private boolean enabled;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
 	private List<UserRole> userRoles;
 
 	public List<UserRole> getUserRoles() {

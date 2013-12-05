@@ -15,6 +15,10 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	public void delete(int id) {
+		userRepository.delete(id);
+	}
 
 	public List<User> findAll() {
 		return userRepository.findAll();
@@ -34,5 +38,9 @@ public class UserService {
 
 	public long count() {
 		return userRepository.count();
+	}
+
+	public void add(User user) {
+		userRepository.add(user);
 	}
 }

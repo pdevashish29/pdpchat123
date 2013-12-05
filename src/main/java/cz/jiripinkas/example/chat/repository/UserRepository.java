@@ -14,6 +14,10 @@ public class UserRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	public void delete(int id) {
+		entityManager.remove(entityManager.find(User.class, id));
+	}
 
 	public List<User> findAll() {
 		return entityManager.createNamedQuery(User.FIND_ALL, User.class)
@@ -38,5 +42,9 @@ public class UserRepository {
 	public long count() {
 		return entityManager.createNamedQuery(User.COUNT, Long.class)
 				.getSingleResult();
+	}
+
+	public void add(User user) {
+		entityManager.persist(user);
 	}
 }

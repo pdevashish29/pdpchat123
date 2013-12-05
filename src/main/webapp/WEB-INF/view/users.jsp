@@ -14,6 +14,7 @@
 			<th>name</th>
 			<th>enabled</th>
 			<th>roles</th>
+			<th>remove</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,6 +27,10 @@
 						${ur.role.name}
 						<br/>
 					</c:forEach>
+				</td>
+				<td>
+					<a href="users/delete.html?id=${user.id}" 
+					   class="btn btn-primary btn-danger btn-remove">remove</a>
 				</td>
 			</tr>
 		</c:forEach>
@@ -57,7 +62,7 @@ $(document).ready(function() {
         <h4 class="modal-title" id="myModalLabel">Really remove?</h4>
       </div>
       <div class="modal-body">
-        Do you really want to remove this chatroom? 
+        Do you really want to remove this user? 
         There's no going back!
       </div>
       <div class="modal-footer">
