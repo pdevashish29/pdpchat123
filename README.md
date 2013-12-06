@@ -21,7 +21,7 @@ Based on Maven, Hibernate, HSQLDB and Twitter Bootstrap.</p>
 <p>
 	You can deploy this web application to <a href="http://www.heroku.com"
 		target="_blank">Heroku</a>. Live preview is here: <a
-		href="http://example-online-chat.jiripinkas.cz/" target="_blank">http://example-online-chat.jiripinkas.cz/</a>
+		href="http://example-online-chat-2.jiripinkas.cz/" target="_blank">http://example-online-chat-2.jiripinkas.cz/</a>
 </p>
 
 <h2>My other projects:</h2>
