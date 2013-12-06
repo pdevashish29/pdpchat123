@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <html>
 <head>
 <title>${param.title}</title>
@@ -32,8 +33,19 @@
 					<li class="${param.page == 'chatroom' ? 'active' : ''}"><a href="<c:url value="/chatroom.html" />">New Chatroom</a></li>
 					<li class="${param.page == 'list' ? 'active' : ''}"><a href="<c:url value="/chatroom/list.html" />">Chatroom List</a></li>
 					<li class="${param.page == 'about' ? 'active' : ''}"><a href="<c:url value="/about.html" />">About</a></li>
-					<li class="${param.page == 'users' ? 'active' : ''}"><a href="<c:url value="/users.html" />">Users</a></li>
-					<li class="${param.page == 'usersAdd' ? 'active' : ''}"><a href="<c:url value="/users/add.html" />">Add new user</a></li>
+					<security:authorize access="isAuthenticated()" var="loggedIn" />
+					<c:choose>
+						<c:when test="${loggedIn}">
+							<li><a href="/logout">Logout ${pageContext.request.remoteUser}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="/login.jsp">Login</a></li>
+							<li class="${param.page == 'usersAdd' ? 'active' : ''}"><a href="<c:url value="/users/add.html" />">Register new user</a></li>
+						</c:otherwise>
+					</c:choose>
+					<security:authorize access="hasRole('ROLE_ADMIN')">
+						<li class="${param.page == 'users' ? 'active' : ''}"><a href="<c:url value="/users.html" />">Users</a></li>
+					</security:authorize>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = User.FIND_ALL, query = "select u from User u left join fetch u.userRoles ur left join fetch ur.role"),
+		@NamedQuery(name = User.FIND_ALL, query = "select distinct u from User u left join fetch u.userRoles ur left join fetch ur.role"),
 		// @NamedQuery(name = User.FIND_ALL, query = "select u from User u"),
 		@NamedQuery(name = User.FIND_BY_NAME, query = "select u from User u where u.name = :name"),
 		@NamedQuery(name = User.COUNT, query = "select count(u) from User u"),
@@ -42,6 +42,17 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<UserRole> userRoles;
+
+	@OneToMany(mappedBy = "user")
+	private List<Chatmessage> chatmessages;
+
+	public void setChatmessages(List<Chatmessage> chatmessages) {
+		this.chatmessages = chatmessages;
+	}
+
+	public List<Chatmessage> getChatmessages() {
+		return chatmessages;
+	}
 
 	public List<UserRole> getUserRoles() {
 		return userRoles;

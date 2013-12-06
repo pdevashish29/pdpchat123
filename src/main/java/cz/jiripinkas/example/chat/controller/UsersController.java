@@ -35,9 +35,7 @@ public class UsersController {
 
 	@ModelAttribute
 	public User construct() {
-		User user = new User();
-		user.setName("jmeno");
-		return user;
+		return new User();
 	}
 
 	@RequestMapping("/add")
@@ -51,7 +49,7 @@ public class UsersController {
 			return showAdd();
 		}
 		userService.add(user);
-		return "redirect:/users.html";
+		return "redirect:/";
 	}
 
 	// @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -61,7 +59,7 @@ public class UsersController {
 	// user.setName(name);
 	// user.setPassword(password);
 	// userService.add(user);
-	// return "redirect:/users.html";
+	// return "redirect:/";
 	// }
 	
 	@RequestMapping("/edit")
@@ -77,7 +75,7 @@ public class UsersController {
 		}
 		user.setId(id);
 		userService.edit(user);
-		return "redirect:/users.html";
+		return "redirect:/";
 	}
 
 }

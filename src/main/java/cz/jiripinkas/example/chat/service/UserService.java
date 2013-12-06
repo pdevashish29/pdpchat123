@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cz.jiripinkas.example.chat.entity.Role;
 import cz.jiripinkas.example.chat.entity.User;
+import cz.jiripinkas.example.chat.repository.RoleRepository;
 import cz.jiripinkas.example.chat.repository.UserRepository;
 
 @Transactional
@@ -39,9 +41,14 @@ public class UserService {
 	public long count() {
 		return userRepository.count();
 	}
+	
+	@Autowired
+	private RoleRepository roleRepository;
 
 	public void add(User user) {
 		userRepository.add(user);
+		Role role = roleRepository.findByName("ROLE_USER");
+		roleRepository.assignRole(user, role);
 	}
 
 	public void edit(User user) {

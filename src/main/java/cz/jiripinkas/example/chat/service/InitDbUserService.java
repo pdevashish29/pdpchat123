@@ -20,10 +20,12 @@ public class InitDbUserService {
 	public void init() {
 		User userAdmin = new User();
 		userAdmin.setName("admin");
+		userAdmin.setPassword("admin");
 		entityManager.persist(userAdmin);
 
 		User userGuest = new User();
 		userGuest.setName("guest");
+		userGuest.setPassword("guest");
 		entityManager.persist(userGuest);
 
 		Role roleUser = new Role();
@@ -43,6 +45,11 @@ public class InitDbUserService {
 		userRoleUser.setRole(roleUser);
 		userRoleUser.setUser(userGuest);
 		entityManager.persist(userRoleUser);
+
+		UserRole userRoleUser2 = new UserRole();
+		userRoleUser2.setRole(roleUser);
+		userRoleUser2.setUser(userAdmin);
+		entityManager.persist(userRoleUser2);
 
 	}
 }

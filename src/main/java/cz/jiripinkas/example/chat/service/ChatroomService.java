@@ -45,12 +45,16 @@ public class ChatroomService {
 	public void save(Chatroom chatroom) {
 		chatroomRepository.save(chatroom);
 	}
+	
+	@Autowired
+	private UserService userService;
 
 	@TransactionalRW
-	public void saveChatMessage(Chatmessage chatMessage, int id) {
+	public void saveChatMessage(Chatmessage chatMessage, int id, String userName) {
 		Chatroom chatroom = chatroomRepository.single(id);
 		chatMessage.setChatroom(chatroom);
 		chatMessage.setAddedDate(new Date());
+		chatMessage.setUser(userService.findByName(userName));
 		chatroomRepository.saveMessage(chatMessage);
 	}
 

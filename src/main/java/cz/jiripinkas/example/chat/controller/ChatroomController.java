@@ -1,6 +1,7 @@
 package cz.jiripinkas.example.chat.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -82,10 +83,11 @@ public class ChatroomController {
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.POST)
-	public String saveMessage(@RequestParam String message, @RequestParam int id) {
+	public String saveMessage(@RequestParam String message, @RequestParam int id, Principal principal) {
+		String userName = principal.getName();
 		Chatmessage chatMessage = new Chatmessage();
 		chatMessage.setMessage(message);
-		chatroomService.saveChatMessage(chatMessage, id);
+		chatroomService.saveChatMessage(chatMessage, id, userName);
 		return "redirect:/chatroom/detail.html?id=" + id;
 	}
 }

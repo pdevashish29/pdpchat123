@@ -8,12 +8,21 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import cz.jiripinkas.example.chat.entity.Role;
+import cz.jiripinkas.example.chat.entity.User;
+import cz.jiripinkas.example.chat.entity.UserRole;
 
 @Repository
 public class RoleRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	public void assignRole(User user, Role role) {
+		UserRole userRole = new UserRole();
+		userRole.setRole(role);
+		userRole.setUser(user);
+		entityManager.persist(userRole);
+	}
 
 	public List<Role> findAll() {
 		return entityManager.createNamedQuery(Role.FIND_ALL, Role.class)

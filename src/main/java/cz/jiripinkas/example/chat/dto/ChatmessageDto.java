@@ -3,8 +3,18 @@ package cz.jiripinkas.example.chat.dto;
 public class ChatmessageDto {
 
 	private String message;
-	
+
 	private int id;
+
+	private UserDto user;
+
+	public UserDto getUser() {
+		return user;
+	}
+
+	public void setUser(UserDto user) {
+		this.user = user;
+	}
 
 	public String getMessage() {
 		return message;
@@ -21,6 +31,5 @@ public class ChatmessageDto {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
 }

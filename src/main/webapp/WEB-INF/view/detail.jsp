@@ -32,7 +32,7 @@ ${chatroom.description}<br><br>
 		}).done(function(data) {
 			$(".messages").html("");
 			$.each(data.chatmessages, function(index, value) {
-				$(".messages").append(value.message + "<br>");
+				$(".messages").append(value.user.name + ": " + value.message + "<br>");
 			});
 		});
 	};
