@@ -44,8 +44,9 @@ public class RoleServiceIT {
 	@Test
 	public void testFindByUserName() {
 		List<Role> list = roleService.findByUserName("admin");
-		Assert.assertEquals(1, list.size());
+		Assert.assertEquals(2, list.size());
 		Assert.assertEquals("ROLE_ADMIN", list.get(0).getName());
+		Assert.assertEquals("ROLE_USER", list.get(1).getName());
 	}
 
 }
