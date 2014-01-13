@@ -29,7 +29,7 @@ public class ChatroomController {
 
 	@Autowired
 	private ChatroomService chatroomService;
-
+	
 	@RequestMapping
 	public String show() {
 		return "chatroom";
@@ -38,7 +38,7 @@ public class ChatroomController {
 	@RequestMapping("/detail/{id}")
 	@ResponseBody
 	public ChatroomDto restDetail(@PathVariable int id) {
-		return chatroomService.getSingleChatroomDto(id);
+		return chatroomService.findOneDto(id);
 	}
 
 	@RequestMapping("/csv")
@@ -71,7 +71,7 @@ public class ChatroomController {
 
 	@RequestMapping("/detail")
 	public String detail(Model model, @RequestParam int id) {
-		Chatroom chatroom = chatroomService.getChatroom(id);
+		Chatroom chatroom = chatroomService.findOne(id);
 		model.addAttribute("chatroom", chatroom);
 		return "detail";
 	}

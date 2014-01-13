@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +21,19 @@ public class ChatroomService {
 	@Autowired
 	private ChatroomRepository chatroomRepository;
 
+	@Autowired
+	private DozerBeanMapper mapper;
+
 	public List<Chatroom> getChatrooms() {
 		return chatroomRepository.list();
 	}
 
-	public Chatroom getChatroom(int id) {
-		return chatroomRepository.single(id);
+	public Chatroom findOne(int id) {
+		return chatroomRepository.findOne(id);
 	}
 
-	public ChatroomDto getSingleChatroomDto(int id) {
-		Chatroom chatroom = chatroomRepository.single(id);
-		Mapper mapper = new DozerBeanMapper();
+	public ChatroomDto findOneDto(int id) {
+		Chatroom chatroom = chatroomRepository.findOne(id);
 		return mapper.map(chatroom, ChatroomDto.class);
 	}
 
@@ -45,13 +46,13 @@ public class ChatroomService {
 	public void save(Chatroom chatroom) {
 		chatroomRepository.save(chatroom);
 	}
-	
+
 	@Autowired
 	private UserService userService;
 
 	@TransactionalRW
 	public void saveChatMessage(Chatmessage chatMessage, int id, String userName) {
-		Chatroom chatroom = chatroomRepository.single(id);
+		Chatroom chatroom = chatroomRepository.findOne(id);
 		chatMessage.setChatroom(chatroom);
 		chatMessage.setAddedDate(new Date());
 		chatMessage.setUser(userService.findByName(userName));

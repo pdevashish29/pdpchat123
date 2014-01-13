@@ -22,7 +22,7 @@ public class ChatroomRepository {
 				.getResultList();
 	}
 
-	public Chatroom single(int id) {
+	public Chatroom findOne(int id) {
 //		return entityManager
 //				.createNamedQuery(Chatroom.FIND_ONE, Chatroom.class)
 //				.setParameter("id", id).getSingleResult();
