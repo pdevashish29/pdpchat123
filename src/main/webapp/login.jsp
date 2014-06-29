@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="WEB-INF/view/layout/header.jsp">
 	<jsp:param value="Login" name="title" />
+	<jsp:param value="login" name="page" />
 </jsp:include>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

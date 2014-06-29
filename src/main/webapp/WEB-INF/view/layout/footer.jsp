@@ -6,7 +6,7 @@
 	<br />
 	<p class="text-muted credit">
 		&copy; Jiri Pinkas 2013 | <a
-			href="https://github.com/jirkapinkas/example-online-chat"
+			href="https://github.com/jirkapinkas/example-online-chat-2"
 			target="_blank">This project on Github</a>
 	</p>
 </div>

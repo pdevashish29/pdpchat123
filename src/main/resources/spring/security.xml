@@ -10,6 +10,8 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<http auto-config="true" use-expressions="true">
 		<logout logout-url="/logout" />
 		<form-login login-page='/login.jsp' />
+		<intercept-url pattern="/chatroom*" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/chatroom/list*" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/chatroom/detail*" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/users.html*" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/users/delete.html*" access="hasRole('ROLE_ADMIN')" />

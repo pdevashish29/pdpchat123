@@ -17,7 +17,7 @@
 		<jstl.version>1.2</jstl.version>
 
 		<!-- Spring -->
-		<spring.version>3.2.5.RELEASE</spring.version>
+		<spring.version>3.2.8.RELEASE</spring.version>
 
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.2.1.Final</hibernate.version>
@@ -233,7 +233,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.13.v20130916</version>
+				<version>8.1.15.v20140411</version>
 				<configuration>
 					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>

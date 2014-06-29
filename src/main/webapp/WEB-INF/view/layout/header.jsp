@@ -39,7 +39,7 @@
 							<li><a href="/logout">Logout ${pageContext.request.remoteUser}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="/login.jsp">Login</a></li>
+							<li class="${param.page == 'login' ? 'active' : ''}"><a href="/login.jsp">Login</a></li>
 							<li class="${param.page == 'usersAdd' ? 'active' : ''}"><a href="<c:url value="/users/add.html" />">Register new user</a></li>
 						</c:otherwise>
 					</c:choose>
